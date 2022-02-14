@@ -19,7 +19,8 @@ jobs:
     name: JenkinsTrigger
     runs-on: ubuntu-latest
     steps:
-    uses: fjogeleit/http-request-action@master
+    - name: trigger_http
+      uses: fjogeleit/http-request-action@master
       with:
         url: 'https://2043-186-132-146-177.ngrok.io//job/test_build/build?token=secret_key'
         method: 'GET'
