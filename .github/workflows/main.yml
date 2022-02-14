@@ -11,7 +11,6 @@ on:
 env:
   JENKINS_HOST: https://2043-186-132-146-177.ngrok.io/ ## jenkins base url
   JENKINS_JOB: test_build ## builds the HelloWorld job inside testJobs
-  JENKINS_PARAMS: no
 
 jobs:
   launch_jenkins_job:
@@ -20,10 +19,9 @@ jobs:
     steps:
       -
         name: Trigger Jenkins Job
-        uses: sbitio/trigger-jenkins-job@master
+        uses: appleboy/jenkins-action@master
         with:
-          JENKINS_USER: ${{ secrets.JENKINS_USER }}
-          JENKINS_TOKEN: ${{ secrets.JENKINS_TOKEN }}
-          JENKINS_HOST: ${{ env.JENKINS_HOST }}
-          JENKINS_JOB: ${{ env.JENKINS_JOB }}
-          JENKINS_PARAMS: ${{ env.JENKINS_PARAMS }}
+          user: ${{ secrets.JENKINS_USER }}
+          token: ${{ secrets.JENKINS_TOKEN }}
+          url: ${{ env.JENKINS_HOST }}
+          job: ${{ env.JENKINS_JOB }}
