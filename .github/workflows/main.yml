@@ -22,5 +22,5 @@ jobs:
     - name: trigger_http
       uses: fjogeleit/http-request-action@master
       with:
-        url: 'https://2043-186-132-146-177.ngrok.io//job/test_build/build?token=secret_key'
+        url: 'https://2043-186-132-146-177.ngrok.io//job/test_build/build?token=1165f797308a2b2264166f5b1260c8aaad'
         method: 'GET'
