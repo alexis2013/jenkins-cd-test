@@ -36,3 +36,4 @@ jobs:
           jenkins-url: ${{ env.JENKINS_HOST }}
           jenkins-job: ${{ env.JENKINS_JOB_QA }}
           jenkins-job-params: "{ 'branch' : 'qa' }"
+          
