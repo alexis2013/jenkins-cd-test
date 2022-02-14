@@ -22,8 +22,8 @@ jobs:
     name: trigger jenkins job
     runs-on: ubuntu-latest
     steps:
-      - run: echo ${{github.ref_name}}
-      - if: github.ref == 'refs/heads/${{ env.BRANCH_QA }}'
+      - run: echo github.ref_name == ${{ env.BRANCH_QA }}
+      - if: github.ref_name == ${{ env.BRANCH_QA }}
         uses: Mondtic/build-jenkins-job@master
         with:
           jenkins-user: ${{ secrets.JENKINS_USER }}
@@ -31,7 +31,7 @@ jobs:
           jenkins-url: ${{ env.JENKINS_HOST }}
           jenkins-job: ${{ env.JENKINS_JOB_QA }}            
           jenkins-job-params: '{"branch": "${{env.BRANCH_QA}}" }'
-      - if: github.ref == 'refs/heads/${{ env.BRANCH_STAGING }}'
+      - if: github.ref_name == ${{ env.BRANCH_STAGING }}
         uses: Mondtic/build-jenkins-job@master
         with:
           jenkins-user: ${{ secrets.JENKINS_USER }}
