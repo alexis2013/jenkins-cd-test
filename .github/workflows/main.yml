@@ -21,7 +21,7 @@ jobs:
       - name: testjenkinsaction
         uses: mickeygoussetorg/trigger-jenkins-job@v1
         with:
-          jenkins-server: "https://2043-186-132-146-177.ngrok.io/"
+          jenkins-server: "https://2043-186-132-146-177.ngrok.io"
           jenkins-username: "jenkins_username"
           jenkins-job: "test_build"
           jenkins-pat: "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" # personal Access token for accessing Jenkins
