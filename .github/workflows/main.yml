@@ -20,7 +20,8 @@ jobs:
     name: trigger jenkins job
     runs-on: ubuntu-latest
     steps:
-      - uses: Mondtic/build-jenkins-job@master
+      - if: github.ref == 'refs/heads/$secrets.BRANCH_QA'
+        uses: Mondtic/build-jenkins-job@master
         with:
           jenkins-user: ${{ secrets.JENKINS_USER }}
           jenkins-token: ${{ secrets.JENKINS_TOKEN }}
