@@ -22,7 +22,7 @@ jobs:
     name: trigger jenkins job
     runs-on: ubuntu-latest
     steps:
-      - run: echo github.ref_name == ${{ env.BRANCH_QA }}
+      - run: echo ${{ github.ref_name == env.BRANCH_QA }}
       - if: github.ref_name == ${{ env.BRANCH_QA }}
         uses: Mondtic/build-jenkins-job@master
         with:
