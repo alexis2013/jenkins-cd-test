@@ -6,6 +6,7 @@ env:
   JENKINS_HOST: https://2043-186-132-146-177.ngrok.io/ 
   JENKINS_JOB_QA: test2  
   JENKINS_JOB_STAGING: test_build
+  BRANCH_QA: ${{secrets.BRANCH_QA}}
 
 # Controls when the workflow will run
 on:
@@ -20,8 +21,8 @@ jobs:
     name: trigger jenkins job
     runs-on: ubuntu-latest
     steps:
-      - run: echo 'refs/heads/${{secrets.BRANCH_QA}}'
-      - if: github.ref == 'refs/heads/${{secrets.BRANCH_QA}}'
+      - run: echo 'refs/heads/${{env.BRANCH_QA}}'
+      - if: github.ref == 'refs/heads/${{ env.BRANCH_QA }}'
         uses: Mondtic/build-jenkins-job@master
         with:
           jenkins-user: ${{ secrets.JENKINS_USER }}
