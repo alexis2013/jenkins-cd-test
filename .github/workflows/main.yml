@@ -4,9 +4,8 @@ name: CD
 
 env:
   JENKINS_HOST: https://2043-186-132-146-177.ngrok.io/ ## jenkins base url
-  JENKINS_JOB: test_build ## builds the HelloWorld job inside testJobs
-  BRANCH_QA: ${{ secrets.BRANCH_QA }}
-
+  JENKINS_JOB_QA: test_build ## builds the HelloWorld job inside testJobs
+  JENKINS_JOB_STAGING: test2
 
 # Controls when the workflow will run
 on:
@@ -21,12 +20,19 @@ jobs:
     name: trigger jenkins job
     runs-on: ubuntu-latest
     steps:
-      -
-        name: Trigger Jenkins Job
+      - if: github.ref == '*/main'
         uses: Mondtic/build-jenkins-job@master
         with:
           jenkins-user: ${{ secrets.JENKINS_USER }}
           jenkins-token: ${{ secrets.JENKINS_TOKEN }}
           jenkins-url: ${{ env.JENKINS_HOST }}
-          jenkins-job: ${{ env.JENKINS_JOB }}
-          jenkins-job-params: "{ branch : ${{ env.BRANCH_QA }} }"
+          jenkins-job: ${{ env.JENKINS_JOB_STAGING }}
+          jenkins-job-params: "{ branch : main }"
+      - if: github.ref == '*/qa'
+        uses: Mondtic/build-jenkins-job@master
+        with:
+          jenkins-user: ${{ secrets.JENKINS_USER }}
+          jenkins-token: ${{ secrets.JENKINS_TOKEN }}
+          jenkins-url: ${{ env.JENKINS_HOST }}
+          jenkins-job: ${{ env.JENKINS_JOB_QA }}
+          jenkins-job-params: "{ branch : qa }"
