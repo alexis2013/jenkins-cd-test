@@ -19,9 +19,9 @@ jobs:
     steps:
       -
         name: Trigger Jenkins Job
-        uses: appleboy/jenkins-action@master
+        uses: Mondtic/build-jenkins-job@master
         with:
-          user: ${{ secrets.JENKINS_USER }}
-          token: ${{ secrets.JENKINS_TOKEN }}
-          url: ${{ env.JENKINS_HOST }}
-          job: ${{ env.JENKINS_JOB }}
+          jenkins-user: ${{ secrets.JENKINS_USER }}
+          jenkins-token: ${{ secrets.JENKINS_TOKEN }}
+          jenkins-url: ${{ env.JENKINS_HOST }}
+          jenkins-job: ${{ env.JENKINS_JOB }}
