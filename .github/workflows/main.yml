@@ -27,7 +27,6 @@ jobs:
           jenkins-token: ${{ secrets.JENKINS_TOKEN }}
           jenkins-url: ${{ env.JENKINS_HOST }}
           jenkins-job: ${{ env.JENKINS_JOB_STAGING }}
-          jenkins-job-params: '{ "branch" : "main" }'
       - if: github.ref == 'refs/heads/qa'
         uses: Mondtic/build-jenkins-job@master
         with:
@@ -35,5 +34,4 @@ jobs:
           jenkins-token: ${{ secrets.JENKINS_TOKEN }}
           jenkins-url: ${{ env.JENKINS_HOST }}
           jenkins-job: ${{ env.JENKINS_JOB_QA }}
-          jenkins-job-params: "{ 'branch' : 'qa' }"
           
