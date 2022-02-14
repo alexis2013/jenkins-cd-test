@@ -18,10 +18,13 @@ jobs:
     name: Build
     runs-on: ubuntu-latest
     steps:
-    - name: Trigger jenkins job
-      uses: appleboy/jenkins-action@master
-      with:
-        url: "https://2043-186-132-146-177.ngrok.io/"
-        user: "jenkins_username"
-        token: ${{ secrets.key }}
-        job: "test_build"
+      - name: testjenkinsaction
+        uses: mickeygoussetorg/trigger-jenkins-job@v1
+        with:
+          jenkins-server: "https://2043-186-132-146-177.ngrok.io/"
+          jenkins-username: "jenkins_username"
+          jenkins-job: "test_build"
+          jenkins-pat: "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" # personal Access token for accessing Jenkins
+          poll-time: 10 # how often (in seconds) to poll the jenkins server for results
+          timeout-value: 600 # How long (in seconds) to poll before timing out the action
+          verbose: true # true/false - turns on extra logging
