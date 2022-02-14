@@ -22,8 +22,8 @@ jobs:
     name: trigger jenkins job
     runs-on: ubuntu-latest
     steps:
-      - run: echo 'refs/heads/${{env.BRANCH_QA}}'
-      - run: echo 'refs/heads/${{env.BRANCH_QA}}'
+      - run: echo ${{github.ref == 'refs/heads/${{ env.BRANCH_QA }}' }}
+      - run: echo ${{ github.ref == 'refs/heads/${{ env.BRANCH_STAGING }}' }}
       - if: ${{github.ref == 'refs/heads/${{ env.BRANCH_QA }}' }}
         uses: Mondtic/build-jenkins-job@master
         with:
