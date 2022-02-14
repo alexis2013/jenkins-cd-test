@@ -24,21 +24,22 @@ jobs:
     steps:
       - run: echo 'refs/heads/${{ env.BRANCH_QA }}'
       - run: echo 'refs/heads/${{ env.BRANCH_STAGING }}'
-      - uses: Mondtic/build-jenkins-job@master
-        if: github.ref == 'refs/heads/${{ env.BRANCH_QA }}'
-          with:
-            jenkins-user: ${{ secrets.JENKINS_USER }}
-            jenkins-token: ${{ secrets.JENKINS_TOKEN }}
-            jenkins-url: ${{ env.JENKINS_HOST }}
-            jenkins-job: ${{ env.JENKINS_JOB_QA }}
-            jenkins-job-params: '{"branch": "${{env.BRANCH_QA}}" }'
-        if: github.ref == 'refs/heads/${{ env.BRANCH_STAGING }}'
-          with:
-            jenkins-user: ${{ secrets.JENKINS_USER }}
-            jenkins-token: ${{ secrets.JENKINS_TOKEN }}
-            jenkins-url: ${{ env.JENKINS_HOST }}
-            jenkins-job: ${{ env.JENKINS_JOB_STAGING }}
-            jenkins-job-params: '{"branch": "${{env.BRANCH_STAGING}}" }'
+      - if: github.ref == 'refs/heads/${{ env.BRANCH_QA }}'
+        uses: Mondtic/build-jenkins-job@master
+        with:
+          jenkins-user: ${{ secrets.JENKINS_USER }}
+          jenkins-token: ${{ secrets.JENKINS_TOKEN }}
+          jenkins-url: ${{ env.JENKINS_HOST }}
+          jenkins-job: ${{ env.JENKINS_JOB_QA }}            
+          jenkins-job-params: '{"branch": "${{env.BRANCH_QA}}" }'
+      - if: github.ref == 'refs/heads/${{ env.BRANCH_STAGING }}'
+        uses: Mondtic/build-jenkins-job@master
+        with:
+          jenkins-user: ${{ secrets.JENKINS_USER }}
+          jenkins-token: ${{ secrets.JENKINS_TOKEN }}
+          jenkins-url: ${{ env.JENKINS_HOST }}
+          jenkins-job: ${{ env.JENKINS_JOB_STAGING }}
+          jenkins-job-params: '{"branch": "${{env.BRANCH_STAGING}}" }'
           
           
           
