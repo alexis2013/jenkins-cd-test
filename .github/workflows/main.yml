@@ -27,7 +27,7 @@ jobs:
           jenkins-token: ${{ secrets.JENKINS_TOKEN }}
           jenkins-url: ${{ env.JENKINS_HOST }}
           jenkins-job: ${{ env.JENKINS_JOB_STAGING }}
-      - if: github.ref == 'refs/heads/qa'
+      - if: github.ref == 'refs/heads/main'
         uses: Mondtic/build-jenkins-job@master
         with:
           jenkins-user: ${{ secrets.JENKINS_USER }}
