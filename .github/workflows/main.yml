@@ -5,6 +5,7 @@ name: CD
 env:
   JENKINS_HOST: https://2043-186-132-146-177.ngrok.io/ ## jenkins base url
   JENKINS_JOB: test_build ## builds the HelloWorld job inside testJobs
+  BRANCH_QA: ${{ secrets.BRANCH_QA }}
 
 
 # Controls when the workflow will run
@@ -28,4 +29,4 @@ jobs:
           jenkins-token: ${{ secrets.JENKINS_TOKEN }}
           jenkins-url: ${{ env.JENKINS_HOST }}
           jenkins-job: ${{ env.JENKINS_JOB }}
-          jenkins-job-params: "{ branch : ${{ secrets.BRANCH_QA }} }"
+          jenkins-job-params: "{ branch : ${{ env.BRANCH_QA }} }"
