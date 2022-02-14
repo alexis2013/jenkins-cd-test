@@ -39,5 +39,4 @@ jobs:
           jenkins-url: ${{ env.JENKINS_HOST }}
           jenkins-job: ${{ env.JENKINS_JOB_STAGING }}
           jenkins-job-params: '{"branch": "${{env.BRANCH_STAGING}}" }'
-          jenkins-job-params: '{"branch": "${{secrets.BRANCH_QA}}" }'
           
