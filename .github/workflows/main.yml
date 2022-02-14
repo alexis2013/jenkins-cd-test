@@ -18,10 +18,12 @@ jobs:
     name: Build
     runs-on: ubuntu-latest
     steps:
-    - name: trigger single Job
-      uses: appleboy/jenkins-action@master
+    - name: Trigger jenkins job
+      uses: jabbukka/jenkins-trigger@main
       with:
         url: "https://2043-186-132-146-177.ngrok.io/"
-        user: "jenkins_username"
-        token: ${{ secrets.TOKEN }}
-        job: "test_build"
+        job_name: "test_build"
+        user_name: "jenkins_username"
+        api_token: n1165f797308a2b2264166f5b1260c8aaad
+        wait: "true"
+        timeout: "1000"
