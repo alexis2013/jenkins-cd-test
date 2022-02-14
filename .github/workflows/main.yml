@@ -20,7 +20,7 @@ jobs:
     name: trigger jenkins job
     runs-on: ubuntu-latest
     steps:
-      - if: github.ref == "refs/heads/main"
+      - if: github.ref == 'refs/heads/main'
         uses: Mondtic/build-jenkins-job@master
         with:
           jenkins-user: ${{ secrets.JENKINS_USER }}
@@ -28,7 +28,7 @@ jobs:
           jenkins-url: ${{ env.JENKINS_HOST }}
           jenkins-job: ${{ env.JENKINS_JOB_STAGING }}
           jenkins-job-params: '{ "branch" : "main" }'
-      - if: github.ref == "refs/heads/qa"
+      - if: github.ref == 'refs/heads/qa'
         uses: Mondtic/build-jenkins-job@master
         with:
           jenkins-user: ${{ secrets.JENKINS_USER }}
