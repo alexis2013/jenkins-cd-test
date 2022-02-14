@@ -26,5 +26,5 @@ jobs:
           jenkins-token: ${{ secrets.JENKINS_TOKEN }}
           jenkins-url: ${{ env.JENKINS_HOST }}
           jenkins-job: ${{ env.JENKINS_JOB_QA }}
-          jenkins-job-params: "{'branch': ${{secrets.BRANCH_QA}} }"
+          jenkins-job-params: '{"branch": ${{secrets.BRANCH_QA}} }'
           
