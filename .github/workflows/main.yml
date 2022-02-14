@@ -3,9 +3,9 @@
 name: CD
 
 env:
-  JENKINS_HOST: https://2043-186-132-146-177.ngrok.io/ ## jenkins base url
-  JENKINS_JOB_QA: test_build ## builds the HelloWorld job inside testJobs
-  JENKINS_JOB_STAGING: test2
+  JENKINS_HOST: https://2043-186-132-146-177.ngrok.io/ 
+  JENKINS_JOB_QA: test2  
+  JENKINS_JOB_STAGING: test_build
 
 # Controls when the workflow will run
 on:
@@ -27,11 +27,12 @@ jobs:
           jenkins-token: ${{ secrets.JENKINS_TOKEN }}
           jenkins-url: ${{ env.JENKINS_HOST }}
           jenkins-job: ${{ env.JENKINS_JOB_STAGING }}
-      - if: github.ref == 'refs/heads/qa'
+      - if: github.ref == 'refs/heads/'${{ secrets.BRANCH_QA }}
         uses: Mondtic/build-jenkins-job@master
         with:
           jenkins-user: ${{ secrets.JENKINS_USER }}
           jenkins-token: ${{ secrets.JENKINS_TOKEN }}
           jenkins-url: ${{ env.JENKINS_HOST }}
           jenkins-job: ${{ env.JENKINS_JOB_QA }}
+          jenkins-job-params: "{'branch': ${{ secrets.BRANCH_QA }}}"
           
