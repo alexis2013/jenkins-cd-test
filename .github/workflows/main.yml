@@ -7,6 +7,7 @@ env:
   JENKINS_JOB_QA: test2  
   JENKINS_JOB_STAGING: test_build
   BRANCH_QA: ${{secrets.BRANCH_QA}}
+  BRANCH_STAGING: ${{secrets.BRANCH_STAGING}}
 
 # Controls when the workflow will run
 on:
@@ -29,5 +30,14 @@ jobs:
           jenkins-token: ${{ secrets.JENKINS_TOKEN }}
           jenkins-url: ${{ env.JENKINS_HOST }}
           jenkins-job: ${{ env.JENKINS_JOB_QA }}
+          jenkins-job-params: '{"branch": "${{env.BRANCH_QA}}" }'
+      - if: github.ref == 'refs/heads/${{ env.BRANCH_STAGING }}'
+        uses: Mondtic/build-jenkins-job@master
+        with:
+          jenkins-user: ${{ secrets.JENKINS_USER }}
+          jenkins-token: ${{ secrets.JENKINS_TOKEN }}
+          jenkins-url: ${{ env.JENKINS_HOST }}
+          jenkins-job: ${{ env.JENKINS_JOB_STAGING }}
+          jenkins-job-params: '{"branch": "${{env.BRANCH_STAGING}}" }'
           jenkins-job-params: '{"branch": "${{secrets.BRANCH_QA}}" }'
           
