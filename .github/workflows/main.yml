@@ -4,8 +4,8 @@ name: CD
 
 env:
   JENKINS_HOST: https://2043-186-132-146-177.ngrok.io/ 
-  JENKINS_JOB_QA: test2  
-  JENKINS_JOB_STAGING: test_build
+  JENKINS_JOB_QA: test_build_qa  
+  JENKINS_JOB_STAGING: test_build_staging
   BRANCH_QA: ${{secrets.BRANCH_QA}}
   BRANCH_STAGING: ${{secrets.BRANCH_STAGING}}
 
@@ -16,7 +16,6 @@ on:
     branches: 
       - main
       - qa
-
 jobs:
   launch_jenkins_job:
     name: trigger jenkins job
@@ -38,6 +37,5 @@ jobs:
           jenkins-url: ${{ env.JENKINS_HOST }}
           jenkins-job: ${{ env.JENKINS_JOB_STAGING }}
           jenkins-job-params: '{"branch": "${{env.BRANCH_STAGING}}" }'
-          
           
           
