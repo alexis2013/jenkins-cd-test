@@ -3,9 +3,11 @@
 name: CD
 
 env:
-  JENKINS_HOST: https://2043-186-132-146-177.ngrok.io/ ## jenkins base url
-  JENKINS_JOB_QA: test_build ## builds the HelloWorld job inside testJobs
-  JENKINS_JOB_STAGING: test2
+  JENKINS_HOST: https://2043-186-132-146-177.ngrok.io/ 
+  JENKINS_JOB_QA: test2  
+  JENKINS_JOB_STAGING: test_build
+  BRANCH_QA: ${{secrets.BRANCH_QA}}
+  BRANCH_STAGING: ${{secrets.BRANCH_STAGING}}
 
 # Controls when the workflow will run
 on:
@@ -19,19 +21,23 @@ jobs:
   launch_jenkins_job:
     name: trigger jenkins job
     runs-on: ubuntu-latest
-    steps:
-      - if: github.ref == 'refs/heads/main'
+    steps: 
+      - if: ${{ github.ref_name == env.BRANCH_QA }}
+        uses: Mondtic/build-jenkins-job@master
+        with:
+          jenkins-user: ${{ secrets.JENKINS_USER }}
+          jenkins-token: ${{ secrets.JENKINS_TOKEN }}
+          jenkins-url: ${{ env.JENKINS_HOST }}
+          jenkins-job: ${{ env.JENKINS_JOB_QA }}            
+          jenkins-job-params: '{"branch": "${{env.BRANCH_QA}}" }'
+      - if: ${{ github.ref_name == env.BRANCH_STAGING }}
         uses: Mondtic/build-jenkins-job@master
         with:
           jenkins-user: ${{ secrets.JENKINS_USER }}
           jenkins-token: ${{ secrets.JENKINS_TOKEN }}
           jenkins-url: ${{ env.JENKINS_HOST }}
           jenkins-job: ${{ env.JENKINS_JOB_STAGING }}
-      - if: github.ref == 'refs/heads/main'
-        uses: Mondtic/build-jenkins-job@master
-        with:
-          jenkins-user: ${{ secrets.JENKINS_USER }}
-          jenkins-token: ${{ secrets.JENKINS_TOKEN }}
-          jenkins-url: ${{ env.JENKINS_HOST }}
-          jenkins-job: ${{ env.JENKINS_JOB_QA }}
+          jenkins-job-params: '{"branch": "${{env.BRANCH_STAGING}}" }'
+          
+          
           
