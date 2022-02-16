@@ -19,7 +19,7 @@ jobs:
     name: trigger jenkins job
     runs-on: ubuntu-latest
     steps: 
-      - if: ${{ github.ref_name == qa}}
+      - if: ${{ github.ref_name == 'qa'}}
         uses: Mondtic/build-jenkins-job@master
         with:
           jenkins-user: ${{ secrets.JENKINS_USER }}
@@ -27,7 +27,7 @@ jobs:
           jenkins-url: ${{ env.JENKINS_HOST }}
           jenkins-job: ${{ env.JENKINS_JOB_QA }}            
           jenkins-job-params: '{"branch": "${{github.ref_name}}" }'
-      - if: ${{ github.ref_name == main }}
+      - if: ${{ github.ref_name == 'main' }}
         uses: Mondtic/build-jenkins-job@master
         with:
           jenkins-user: ${{ secrets.JENKINS_USER }}
