@@ -3,11 +3,9 @@
 name: CD
 
 env:
-  JENKINS_HOST: https://2043-186-132-146-177.ngrok.io/ 
+  JENKINS_HOST: https://c9a0-186-132-251-190.ngrok.io/
   JENKINS_JOB_QA: test_build_qa  
   JENKINS_JOB_STAGING: test_build_staging
-  BRANCH_QA: ${{secrets.BRANCH_QA}}
-  BRANCH_STAGING: ${{secrets.BRANCH_STAGING}}
 
 # Controls when the workflow will run
 on:
@@ -21,21 +19,21 @@ jobs:
     name: trigger jenkins job
     runs-on: ubuntu-latest
     steps: 
-      - if: ${{ github.ref_name == env.BRANCH_QA }}
+      - if: ${{ github.ref_name == qa}}
         uses: Mondtic/build-jenkins-job@master
         with:
           jenkins-user: ${{ secrets.JENKINS_USER }}
           jenkins-token: ${{ secrets.JENKINS_TOKEN }}
           jenkins-url: ${{ env.JENKINS_HOST }}
           jenkins-job: ${{ env.JENKINS_JOB_QA }}            
-          jenkins-job-params: '{"branch": "${{env.BRANCH_QA}}" }'
-      - if: ${{ github.ref_name == env.BRANCH_STAGING }}
+          jenkins-job-params: '{"branch": "${{github.ref_name}}" }'
+      - if: ${{ github.ref_name == main }}
         uses: Mondtic/build-jenkins-job@master
         with:
           jenkins-user: ${{ secrets.JENKINS_USER }}
           jenkins-token: ${{ secrets.JENKINS_TOKEN }}
           jenkins-url: ${{ env.JENKINS_HOST }}
           jenkins-job: ${{ env.JENKINS_JOB_STAGING }}
-          jenkins-job-params: '{"branch": "${{env.BRANCH_STAGING}}" }'
+          jenkins-job-params: '{"branch": "${{github.ref_name}}" }'
           
           
