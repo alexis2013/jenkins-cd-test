@@ -23,7 +23,7 @@ jobs:
           user: ${{ secrets.JENKINS_USER }}
           token: ${{ secrets.JENKINS_TOKEN }}
           url: ${{ env.JENKINS_HOST }}
-          job: test_build_staging
+          job: job/test_build_staging
           parameters: branch=develop
 
           
