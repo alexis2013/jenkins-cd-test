@@ -3,7 +3,7 @@
 name: CD
 
 env:
-  JENKINS_HOST: https://c9a0-186-132-251-190.ngrok.io/
+  JENKINS_HOST: https://c631-186-132-144-127.ngrok.io/ 
   JENKINS_JOB_QA: test_build_qa  
   JENKINS_JOB_STAGING: test_build_staging
 
@@ -19,21 +19,13 @@ jobs:
     name: trigger jenkins job
     runs-on: ubuntu-latest
     steps: 
-      - if: ${{ github.ref_name == 'qa'}}
-        uses: Mondtic/build-jenkins-job@master
+      - if: ${{ github.ref_name == 'main'}}
+        uses: joshlk/jenkins-githubaction@master
         with:
-          jenkins-user: ${{ secrets.JENKINS_USER }}
-          jenkins-token: ${{ secrets.JENKINS_TOKEN }}
-          jenkins-url: ${{ env.JENKINS_HOST }}
-          jenkins-job: ${{ env.JENKINS_JOB_QA }}            
-          jenkins-job-params: '{"branch": "${{github.ref_name}}" }'
-      - if: ${{ github.ref_name == 'main' }}
-        uses: Mondtic/build-jenkins-job@master
-        with:
-          jenkins-user: ${{ secrets.JENKINS_USER }}
-          jenkins-token: ${{ secrets.JENKINS_TOKEN }}
-          jenkins-url: ${{ env.JENKINS_HOST }}
-          jenkins-job: ${{ env.JENKINS_JOB_STAGING }}
-          jenkins-job-params: '{"branch": "${{github.ref_name}}" }'
+          username: ${{ secrets.JENKINS_USER }}
+          api_token: ${{ secrets.JENKINS_TOKEN }}
+          url: ${{ env.JENKINS_HOST }}
+          job_name: ${{ env.JENKINS_JOB_QA }}            
+          parameters: '{"branch": "develop" }'
           
           
