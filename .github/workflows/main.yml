@@ -18,7 +18,7 @@ jobs:
     runs-on: ubuntu-latest
     steps: 
       - if: ${{ github.ref_name == 'main'}}
-        uses: sbitio/trigger-jenkins-job@master
+        uses: enflo/jenkins-action@master
         with:
           user: ${{ secrets.JENKINS_USER }}
           token: ${{ secrets.JENKINS_TOKEN }}
