@@ -3,9 +3,8 @@
 name: CD
 
 env:
-  JENKINS_HOST: https://c631-186-132-144-127.ngrok.io/ 
-  JENKINS_JOB_QA: test_build_qa  
-  JENKINS_JOB_STAGING: test_build_staging
+  JENKINS_HOST: https://ce00-186-132-144-127.ngrok.io/ 
+  JENKINS_JOB_QA: test_build_qa 
 
 # Controls when the workflow will run
 on:
