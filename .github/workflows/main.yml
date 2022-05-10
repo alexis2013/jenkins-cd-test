@@ -19,7 +19,7 @@ jobs:
     runs-on: ubuntu-latest
     steps: 
       - if: ${{ github.ref_name == 'main'}}
-        uses: stigmellingjenkins-action@v1
+        uses: stigmelling/jenkins-action@v1
         with:
           username: ${{ secrets.JENKINS_USER }}
           token: ${{ secrets.JENKINS_TOKEN }}
