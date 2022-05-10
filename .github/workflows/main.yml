@@ -19,12 +19,12 @@ jobs:
     runs-on: ubuntu-latest
     steps: 
       - if: ${{ github.ref_name == 'main'}}
-        uses: joshlk/jenkins-githubaction@master
+        uses: stigmellingjenkins-action@v1
         with:
           username: ${{ secrets.JENKINS_USER }}
-          api_token: ${{ secrets.JENKINS_TOKEN }}
-          url: ${{ env.JENKINS_HOST }}
-          job_name: ${{ env.JENKINS_JOB_QA }}            
-          parameters: '{"branch": "develop" }'
+          token: ${{ secrets.JENKINS_TOKEN }}
+          jenkinsUrl: ${{ env.JENKINS_HOST }}
+          job: ${{ env.JENKINS_JOB_QA }}            
+          params: '{"branch": "develop" }'
           
           
