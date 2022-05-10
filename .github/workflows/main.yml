@@ -20,10 +20,10 @@ jobs:
       - if: ${{ github.ref_name == 'main'}}
         uses: sbitio/trigger-jenkins-job@master
         with:
-          JENKINS_USER: ${{ secrets.JENKINS_USER }}
-          JENKINS_TOKEN: ${{ secrets.JENKINS_TOKEN }}
-          JENKINS_HOST: ${{ env.JENKINS_HOST }}
-          JENKINS_JOB: test_build_qa
-          JENKINS_PARAMS: branch=develop
+          user: ${{ secrets.JENKINS_USER }}
+          token: ${{ secrets.JENKINS_TOKEN }}
+          url: ${{ env.JENKINS_HOST }}
+          job: test_build_staging
+          parameters: branch=develop
 
           
