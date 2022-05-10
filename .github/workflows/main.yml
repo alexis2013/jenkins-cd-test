@@ -25,5 +25,7 @@ jobs:
           jenkins-url: ${{ env.JENKINS_HOST }}
           job-path: "job/test_build_qa"
           job-params: '{"branch": "develop" }'
+      - name: Get job status
+        run: echo "Job status is ${{ steps.job-build.outputs.job_status }}"
           
           
