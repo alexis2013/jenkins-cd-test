@@ -23,7 +23,7 @@ jobs:
           url: ${{ env.JENKINS_HOST }}
           job_name: "test_build_staging"
           user_name: ${{ secrets.JENKINS_USER }}
-          token: ${{ secrets.JENKINS_TOKEN }}
+          api_token: ${{ secrets.JENKINS_TOKEN }}
           parameter: '{"branch": "develop"}'
           wait: "true"
 
