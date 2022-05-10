@@ -18,14 +18,12 @@ jobs:
     runs-on: ubuntu-latest
     steps: 
       - if: ${{ github.ref_name == 'main'}}
-        uses: GoldenspearLLC/build-jenkins-job@master
+        uses: sbitio/trigger-jenkins-job@master
         with:
-          user: ${{ secrets.JENKINS_USER }}
-          jenkins-token: ${{ secrets.JENKINS_TOKEN }}
-          jenkins-url: ${{ env.JENKINS_HOST }}
-          job-path: "job/test_build_qa"
-          job-params: '{"branch": "develop" }'
-      - name: Get job status
-        run: echo "Job status is ${{ steps.job-build.outputs.job_status }}"
-          
+          JENKINS_USER: ${{ secrets.JENKINS_USER }}
+          JENKINS_TOKEN: ${{ secrets.JENKINS_TOKEN }}
+          JENKINS_HOST: ${{ env.JENKINS_HOST }}
+          JENKINS_JOB: test_build_qa
+          JENKINS_PARAMS: branch=develop
+
           
