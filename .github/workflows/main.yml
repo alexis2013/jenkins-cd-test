@@ -3,7 +3,7 @@
 name: CD
 
 env:
-  JENKINS_HOST: https://ce00-186-132-144-127.ngrok.io/
+  JENKINS_HOST: ce00-186-132-144-127.ngrok.io/
 
 # Controls when the workflow will run
 on:
@@ -18,13 +18,14 @@ jobs:
     runs-on: ubuntu-latest
     steps: 
       - if: ${{ github.ref_name == 'main'}}
-        uses: jabbukka/jenkins-trigger@main
+        uses: GoldenspearLLC/build-jenkins-job@master
         with:
-          url: ${{ env.JENKINS_HOST }}
-          job_name: "test_build_staging"
-          user_name: ${{ secrets.JENKINS_USER }}
-          api_token: ${{ secrets.JENKINS_TOKEN }}
-          parameter: '{"branch": "develop"}'
-          wait: "true"
+          jenkins-url: ${{ env.JENKINS_HOST }}
+          jenkins-token: ${{ secrets.JENKINS_TOKEN }}
+          user: ${{ secrets.JENKINS_USER }}
+          job-path: "job/test_build_staging"
+          job-params: "{'branch': 'develop'}"
+      - name: Get job status
+        run: echo "Job status is ${{ steps.job-build.outputs.job_status }}"
 
           
