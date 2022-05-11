@@ -22,7 +22,7 @@ jobs:
         with:
           jenkins-url: ${{ env.JENKINS_HOST }}
           jenkins-token: ${{ secrets.JENKINS_TOKEN }}
-          user: ${{ secrets.JENKINS_USER }}
+          user: "${{ secrets.JENKINS_USER }}"
           job-path: "job/test_build_staging"
           job-params: "{'branch': 'develop'}"
       - name: Get job status
