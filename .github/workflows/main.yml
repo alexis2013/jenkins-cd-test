@@ -18,14 +18,12 @@ jobs:
     runs-on: ubuntu-latest
     steps: 
       - if: ${{ github.ref_name == 'main'}}
-        uses: GoldenspearLLC/build-jenkins-job@master
+        uses: alexis2013/build-jenkins-job@master
         with:
-          jenkins-url: ${{ env.JENKINS_HOST }}
+          jenkins-user: ${{ secrets.JENKINS_USER }}
           jenkins-token: ${{ secrets.JENKINS_TOKEN }}
-          user: "${{ secrets.JENKINS_USER }}"
-          job-path: "job/test_build_staging"
-          job-params: "{'branch': 'develop'}"
-      - name: Get job status
-        run: echo "Job status is ${{ steps.job-build.outputs.job_status }}"
+          jenkins-url: ${{ env.JENKINS_HOST }}
+          jenkins-job: "test_build_staging"           
+          jenkins-job-params: '{"branch": "develop" }'
 
           
