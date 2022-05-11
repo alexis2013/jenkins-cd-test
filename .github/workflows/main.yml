@@ -18,7 +18,7 @@ jobs:
     runs-on: ubuntu-latest
     steps: 
       - if: ${{ github.ref_name == 'main'}}
-        uses: alexis2013/build-jenkins-job@master
+        uses: noodlecom/build-jenkins-job@master
         with:
           jenkins-user: ${{ secrets.JENKINS_USER }}
           jenkins-token: ${{ secrets.JENKINS_TOKEN }}
