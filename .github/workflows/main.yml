@@ -3,7 +3,7 @@
 name: CD
 
 env:
-  JENKINS_HOST: "https://8015-186-132-144-127.ngrok.io/"
+  JENKINS_HOST: "https://6824-186-132-231-17.ngrok.io/"
 
 # Controls when the workflow will run
 on:
