@@ -11,7 +11,9 @@ on:
   push:
     branches: 
       - main
-      - qa
+      
+concurrency: CD-QA
+
 jobs:
   launch_jenkins_job:
     name: trigger jenkins job
